@@ -1,3 +1,12 @@
+type FiltersProps = {
+  searchTerm: string
+  onSearchChange: (value: string) => void
+  selectedSport: string
+  onSportChange: (value: string) => void
+  sportOptions: readonly string[]
+  totalCount: number
+}
+
 export default function Filters({
   searchTerm,
   onSearchChange,
@@ -5,7 +14,7 @@ export default function Filters({
   onSportChange,
   sportOptions,
   totalCount,
-}) {
+}: FiltersProps) {
   return (
     <section className="filters">
       <div className="filters-grid">
@@ -13,7 +22,7 @@ export default function Filters({
           <label htmlFor="search">Search leagues</label>
           <input
             id="search"
-            type="text"
+            type="search"
             placeholder="Search by league name..."
             value={searchTerm}
             onChange={(event) => onSearchChange(event.target.value)}
@@ -36,10 +45,9 @@ export default function Filters({
         </div>
       </div>
 
-      <p className="results">
+      <p className="results" aria-live="polite">
         {totalCount} {totalCount === 1 ? 'league' : 'leagues'} found
       </p>
     </section>
-  );
+  )
 }
-

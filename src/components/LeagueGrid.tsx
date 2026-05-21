@@ -1,6 +1,13 @@
-export default function LeagueGrid({ leagues, onLeagueClick }) {
-  if (!Array.isArray(leagues) || leagues.length === 0) {
-    return null;
+import type { League } from '../types/league'
+
+type LeagueGridProps = {
+  leagues: readonly League[]
+  onLeagueClick: (league: League) => void
+}
+
+export default function LeagueGrid({ leagues, onLeagueClick }: LeagueGridProps) {
+  if (leagues.length === 0) {
+    return null
   }
 
   return (
@@ -21,6 +28,5 @@ export default function LeagueGrid({ leagues, onLeagueClick }) {
         </button>
       ))}
     </section>
-  );
+  )
 }
-
